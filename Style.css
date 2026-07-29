@@ -2404,4 +2404,74 @@ body:not(.giftOpened) .premiumFooter {
     50% {
         transform: translateY(-7px);
     }
+}/* ===== 💻 DESKTOP / LAPTOP FIX ===== */
+
+@media (min-width: 768px) {
+
+    /* পুরো main content center */
+    #mainPage {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto !important;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+
+    /* সব main section center */
+    #mainPage > section,
+    #mainPage > div,
+    .letter,
+    .final,
+    .holdHandSection,
+    .secretSection,
+    .loveQuiz {
+        width: 90% !important;
+        max-width: 650px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box;
+    }
+
+    /* Letter section */
+    .letter {
+        margin-top: 60px !important;
+        margin-bottom: 70px !important;
+        text-align: center;
+    }
+
+    /* One Last Surprise */
+    .final {
+        margin-top: 70px !important;
+        margin-bottom: 70px !important;
+        text-align: center;
+    }
+
+    /* Holding hands */
+    .holdHandSection {
+        margin-top: 70px !important;
+        margin-bottom: 70px !important;
+        text-align: center;
+    }
+
+    /* Secret */
+    .secretSection {
+        margin-top: 70px !important;
+        margin-bottom: 70px !important;
+        text-align: center;
+    }
+
+    /* Quiz */
+    .loveQuiz {
+        margin-top: 70px !important;
+        margin-bottom: 70px !important;
+    }
+
+    /* Footer */
+    .premiumFooter {
+        width: 90% !important;
+        max-width: 650px !important;
+        margin: 80px auto 30px !important;
+        box-sizing: border-box;
+        text-align: center;
+    }
 }
