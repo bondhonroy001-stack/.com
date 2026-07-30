@@ -1814,6 +1814,7 @@ body:not(.giftOpened) .holdHandSection,
 body:not(.giftOpened) .secretSection,
 body:not(.giftOpened) .loveQuiz,
 body:not(.giftOpened) .memoryJarSection,
+body:not(.giftOpened) .flipMemorySection,
 body:not(.giftOpened) .premiumFooter {
     display: none !important;
 }
@@ -2474,4 +2475,202 @@ body:not(.giftOpened) .premiumFooter {
         box-sizing: border-box;
         text-align: center;
     }
+}/* ===== ❤️ TAP HEART EFFECT ===== */
+
+.tapHeart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+
+    font-size: 22px;
+
+    transform: translate(-50%, -50%);
+    animation: tapHeartFloat 1s ease-out forwards;
+}
+
+@keyframes tapHeartFloat {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(.5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -80px) scale(1.25);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -140px) scale(.8);
+    }
+}/* ===== 🖼️ PHOTO FLIP MEMORIES ===== */
+
+.flipMemorySection {
+    width: 88%;
+    max-width: 420px;
+    margin: 55px auto;
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.88);
+    border: 1px solid rgba(255,255,255,.95);
+    border-radius: 30px;
+
+    box-shadow: 0 12px 35px rgba(255,45,117,.12);
+}
+
+.flipLabel {
+    margin: 0;
+
+    color: #aaa;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.flipMemorySection h2 {
+    margin: 9px 0;
+
+    color: #ff2d75;
+    font-size: 27px;
+}
+
+.flipHint {
+    margin-bottom: 25px;
+
+    color: #888;
+    font-size: 13px;
+}
+
+
+/* CARDS */
+
+.flipCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.flipCard {
+    height: 235px;
+    perspective: 1000px;
+}
+
+.flipCardInner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+    transform-style: preserve-3d;
+}
+
+.flipCard.flipped .flipCardInner {
+    transform: rotateY(180deg);
+}
+
+
+/* FRONT + BACK */
+
+.flipCardFront,
+.flipCardBack {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    box-shadow: 0 8px 22px rgba(255,45,117,.12);
+}
+
+
+/* FRONT */
+
+.flipCardFront {
+    background: white;
+}
+
+.flipCardFront img {
+    width: 100%;
+    height: 190px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.flipCardFront span {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ff5d93;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* BACK */
+
+.flipCardBack {
+    padding: 18px 13px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transform: rotateY(180deg);
+
+    background: linear-gradient(
+        145deg,
+        #fff4f8,
+        #ffe4ee
+    );
+
+    color: #555;
+}
+
+.flipDate {
+    color: #ff7ba8;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.flipCardBack h3 {
+    margin: 10px 0;
+
+    color: #ff2d75;
+    font-size: 17px;
+}
+
+.flipCardBack p {
+    margin: 0 0 15px;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.flipCardBack small {
+    color: #999;
+    font-size: 9px;
+}.flipVideo {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
 }

@@ -619,4 +619,38 @@ memoryJar.addEventListener("click", function () {
 
     }, 250);
 
+});// ===== ❤️ TAP HEART EFFECT =====
+
+document.addEventListener("click", function (e) {
+
+    // Button click করলে heart effect না
+    if (e.target.closest("button")) return;
+
+    const heart = document.createElement("span");
+
+    const hearts = ["❤️", "💕", "💗", "💖", "💓"];
+    heart.textContent =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.className = "tapHeart";
+
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function () {
+        heart.remove();
+    }, 1000);
+
+});// ===== 🖼️ PHOTO FLIP CARDS =====
+
+document.querySelectorAll(".flipCard").forEach(function(card) {
+
+    card.addEventListener("click", function() {
+
+        card.classList.toggle("flipped");
+
+    });
+
 });
