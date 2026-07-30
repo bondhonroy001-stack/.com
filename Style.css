@@ -754,7 +754,7 @@ transform:translateY(0);
 }/* ✨ Premium Page Entrance */
 
 #mainPage {
-    animation: premiumEntrance 0.9s ease-out;
+    animation: premiumEntrance 0.5s ease-out;
 }
 
 @keyframes premiumEntrance {
@@ -2673,4 +2673,1064 @@ body:not(.giftOpened) .premiumFooter {
     height: 190px;
     object-fit: cover;
     display: block;
+}/* ===== 🎵 PREMIUM MUSIC BUTTON ===== */
+
+.musicToggle {
+    position: fixed;
+    right: 18px;
+    bottom: 22px;
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.97),
+        rgba(255,220,235,.94)
+    );
+
+    box-shadow:
+        0 8px 25px rgba(255,45,117,.25),
+        inset 0 1px 2px rgba(255,255,255,.9);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    cursor: pointer;
+    z-index: 99999;
+
+    transition: transform .2s ease;
+
+    animation: musicGlow 2.2s ease-in-out infinite !important;
+}
+
+.musicToggle span {
+    font-size: 23px;
+    line-height: 1;
+
+    animation: none !important;
+}
+
+.musicToggle:active {
+    transform: scale(.88);
+}
+
+
+/* Pink soft glow */
+
+@keyframes musicGlow {
+
+    0%, 100% {
+        box-shadow:
+            0 7px 20px rgba(255,45,117,.18),
+            0 0 0 0 rgba(255,45,117,.18);
+    }
+
+    50% {
+        box-shadow:
+            0 9px 28px rgba(255,45,117,.32),
+            0 0 0 8px rgba(255,45,117,0);
+    }
+}/* ===== 🌙 DAY / NIGHT MODE ===== */
+
+.themeToggle {
+    position: fixed;
+    right: 18px;
+    bottom: 90px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.92);
+
+    box-shadow:
+        0 7px 22px rgba(255,45,117,.20);
+
+    font-size: 20px;
+
+    cursor: pointer;
+    z-index: 99999;
+
+    transition:
+        transform .3s ease,
+        background .5s ease;
+}
+
+.themeToggle:active {
+    transform: scale(.88);
+}
+
+
+/* ===== 🌌 NIGHT BACKGROUND ===== */
+
+body.nightMode {
+    background:
+        radial-gradient(
+            circle at top,
+            #39203c 0%,
+            #211425 45%,
+            #120d17 100%
+        ) !important;
+
+    color: #f8eaf1;
+
+    transition:
+        background .7s ease,
+        color .5s ease;
+}
+
+
+/* White cards become dark glass */
+
+body.nightMode .glass,
+body.nightMode .letter,
+body.nightMode .final,
+body.nightMode .secretSection,
+body.nightMode .holdHandSection,
+body.nightMode .loveQuiz,
+body.nightMode .flipMemorySection,
+body.nightMode .premiumFooter {
+
+    background: rgba(35, 22, 40, .88) !important;
+
+    border-color: rgba(255,255,255,.12) !important;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.30) !important;
+}
+
+
+/* Main headings */
+
+body.nightMode h1,
+body.nightMode h2,
+body.nightMode h3 {
+    color: #ff8db6;
+}
+
+
+/* Normal text */
+
+body.nightMode p {
+    color: #eadde5;
+}
+
+
+/* Quiz */
+
+body.nightMode .quizQuestion {
+    background: rgba(255,255,255,.06);
+}
+
+body.nightMode .quizOption {
+    background: rgba(255,255,255,.08);
+    color: #f5e8ef;
+
+    border-color: rgba(255,141,182,.25);
+}
+
+
+/* Flip card */
+
+body.nightMode .flipCardFront {
+    background: #281a2d;
+}
+
+body.nightMode .flipCardBack {
+    background: linear-gradient(
+        145deg,
+        #38223e,
+        #24172a
+    );
+
+    color: #f5e8ef;
+}
+
+
+/* Music + Theme buttons */
+
+body.nightMode .musicToggle,
+body.nightMode .themeToggle {
+    background: rgba(38,24,43,.94);
+
+    border-color: rgba(255,255,255,.15);
+
+    box-shadow:
+        0 7px 25px rgba(255,90,150,.22);
+}/* ===== 🌙 THEME CHANGE ANIMATION ===== */
+
+.themeTransition {
+    position: fixed;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 999999;
+
+    transform: translate(-50%, -50%) scale(0);
+
+    animation: themeWave .75s ease-in-out forwards;
+}
+
+
+/* NIGHT WAVE */
+
+.themeTransition.toNight {
+    background: radial-gradient(
+        circle,
+        #51305b 0%,
+        #28182e 55%,
+        #130d17 100%
+    );
+}
+
+
+/* DAY WAVE */
+
+.themeTransition.toDay {
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        #ffe8f1 55%,
+        #ffd6e6 100%
+    );
+}
+
+
+@keyframes themeWave {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(80);
+
+        opacity: 0;
+    }
+}
+
+
+/* Button little spin */
+
+.themeToggle.themeSpin {
+    animation: themeButtonSpin .7s ease !important;
+}
+
+@keyframes themeButtonSpin {
+
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(.8);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}/* ===== 🌙🎵 FIX FLOATING BUTTON SIZE ===== */
+
+.themeToggle,
+.musicToggle {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    padding: 0 !important;
+    border-radius: 50% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 19px !important;
+}
+
+/* Moon button */
+.themeToggle {
+    right: 18px !important;
+    bottom: 82px !important;
+}
+
+/* Music button */
+.musicToggle {
+    right: 18px !important;
+    bottom: 20px !important;
+}
+
+.musicToggle span {
+    font-size: 19px !important;
+}/* ===== ❤️ SCROLL PROGRESS HEART ===== */
+
+.heartProgress {
+    position: fixed;
+
+    right: 12px;
+    top: 22%;
+
+    width: 18px;
+    height: 45vh;
+
+    z-index: 9000;
+
+    pointer-events: none;
+}
+
+
+/* Background line */
+
+.heartProgressLine {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 2px;
+    height: 100%;
+
+    transform: translateX(-50%);
+
+    background: rgba(255, 80, 140, .15);
+
+    border-radius: 20px;
+}
+
+
+/* Filled line */
+
+.heartProgressFill {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 2px;
+    height: 0%;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        to bottom,
+        #ff9abc,
+        #ff2d75
+    );
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 8px rgba(255,45,117,.35);
+}
+
+
+/* Moving heart */
+
+.heartProgressIcon {
+    position: absolute;
+
+    left: 50%;
+    top: 0%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: #ff2d75;
+
+    font-size: 17px;
+
+    text-shadow:
+        0 2px 8px rgba(255,45,117,.35);
+
+    transition:
+        top .12s linear,
+        transform .25s ease;
+}
+
+
+/* End glow */
+
+.heartProgressIcon.finished {
+    animation:
+        progressHeartGlow 1s ease-in-out infinite alternate;
+}
+
+
+@keyframes progressHeartGlow {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        text-shadow:
+            0 0 5px rgba(255,45,117,.4);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            scale(1.35);
+
+        text-shadow:
+            0 0 15px rgba(255,45,117,.9);
+    }
+}
+
+
+/* Night mode */
+
+body.nightMode .heartProgressLine {
+    background: rgba(255,255,255,.10);
+}
+
+body.nightMode .heartProgressIcon {
+    color: #ff8db6;
+
+    text-shadow:
+        0 0 10px rgba(255,100,160,.65);
+}/* =========================================
+   📱💻 FINAL RESPONSIVE POLISH
+   ========================================= */
+
+/* Prevent unwanted horizontal scrolling */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Images & videos never overflow */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Main content stays centered */
+#mainPage {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Common sections */
+.letter,
+.final,
+.holdHandSection,
+.secretSection,
+.loveQuiz,
+.flipMemorySection,
+.premiumFooter {
+    width: min(90%, 620px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================
+   📱 MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    #mainPage {
+        width: 100%;
+    }
+
+    .letter,
+    .final,
+    .holdHandSection,
+    .secretSection,
+    .loveQuiz,
+    .flipMemorySection,
+    .premiumFooter {
+        width: 90%;
+        max-width: 420px;
+    }
+
+    h1 {
+        font-size: clamp(28px, 9vw, 42px);
+    }
+
+    h2 {
+        font-size: clamp(22px, 7vw, 30px);
+    }
+
+    p {
+        line-height: 1.65;
+    }
+
+    button {
+        max-width: 100%;
+    }
+
+    /* Floating controls */
+    .themeToggle,
+    .musicToggle {
+        right: 14px !important;
+    }
+
+    .heartProgress {
+        right: 5px;
+    }
+}
+
+
+/* =========================================
+   💻 TABLET / LAPTOP
+   ========================================= */
+
+@media (min-width: 768px) {
+
+    #mainPage {
+        width: min(100%, 1100px);
+        margin: 0 auto;
+    }
+
+    .letter,
+    .final,
+    .holdHandSection,
+    .secretSection,
+    .loveQuiz,
+    .flipMemorySection {
+        width: min(82%, 600px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .premiumFooter {
+        width: min(90%, 800px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Don't let headings become huge */
+    h1 {
+        font-size: clamp(34px, 4vw, 50px);
+    }
+
+    h2 {
+        font-size: clamp(26px, 3vw, 36px);
+    }
+
+    /* Floating buttons stay near content */
+    .themeToggle,
+    .musicToggle {
+        right: 25px !important;
+    }
+
+    .heartProgress {
+        right: 12px;
+    }
+}
+
+
+/* =========================================
+   🖥️ LARGE LAPTOP / DESKTOP
+   ========================================= */
+
+@media (min-width: 1200px) {
+
+    #mainPage {
+        max-width: 1150px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .letter,
+    .final,
+    .holdHandSection,
+    .secretSection,
+    .loveQuiz,
+    .flipMemorySection {
+        max-width: 620px;
+    }
+}/* =====================================
+   ✨ SMOOTH SECTION REVEAL + SPACING
+   ===================================== */
+
+/* Consistent spacing */
+.letter,
+.final,
+.loveQuiz,
+.memoryJarSection,
+.flipMemorySection,
+.holdHandSection,
+.secretSection {
+    margin-top: 65px !important;
+    margin-bottom: 65px !important;
+}
+
+
+/* Reveal starting state */
+.revealSection {
+    opacity: 0;
+    transform: translateY(28px) scale(.98);
+
+    transition:
+        opacity .75s ease,
+        transform .75s cubic-bezier(.2,.7,.2,1);
+
+    will-change: opacity, transform;
+}
+
+
+/* Visible state */
+.revealSection.revealVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+
+/* Laptop hover polish */
+@media (hover: hover) {
+
+    .revealSection:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 14px 38px rgba(255,45,117,.14);
+    }
+}
+
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+
+    .letter,
+    .final,
+    .loveQuiz,
+    .memoryJarSection,
+    .flipMemorySection,
+    .holdHandSection,
+    .secretSection {
+        margin-top: 48px !important;
+        margin-bottom: 48px !important;
+    }
+}
+
+
+/* Accessibility / less animation */
+@media (prefers-reduced-motion: reduce) {
+
+    .revealSection {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}/* Keep hero texts in one line */
+h1 {
+    white-space: nowrap;
+}
+
+.date,
+#date,
+.sinceDate {
+    white-space: nowrap;
+}/* =====================================
+   🌙 PREMIUM NIGHT MODE POLISH
+   ===================================== */
+
+/* Smooth theme change */
+body,
+#mainPage,
+.letter,
+.final,
+.loveQuiz,
+.quizQuestion,
+.quizOption,
+.holdHandSection,
+.secretSection,
+.flipMemorySection,
+.premiumFooter {
+    transition:
+        background .55s ease,
+        color .55s ease,
+        border-color .55s ease,
+        box-shadow .55s ease;
+}
+
+
+/* Main night background */
+body.nightMode {
+    background:
+        radial-gradient(circle at 50% 0%,
+            #44233f 0%,
+            #25172b 42%,
+            #100c15 100%
+        ) !important;
+
+    color: #f8edf3 !important;
+}
+
+
+/* Main page */
+body.nightMode #mainPage {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(42,24,43,.96),
+            rgba(20,14,25,.98)
+        ) !important;
+}
+
+
+/* Cards */
+body.nightMode .letter,
+body.nightMode .final,
+body.nightMode .loveQuiz,
+body.nightMode .holdHandSection,
+body.nightMode .secretSection,
+body.nightMode .flipMemorySection,
+body.nightMode .premiumFooter {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(55,34,57,.90),
+            rgba(29,20,34,.94)
+        ) !important;
+
+    border: 1px solid rgba(255,150,190,.13) !important;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.28),
+        0 0 25px rgba(255,70,135,.06) !important;
+}
+
+
+/* Headings */
+body.nightMode h1,
+body.nightMode h2,
+body.nightMode h3 {
+    color: #ff8db7 !important;
+
+    text-shadow:
+        0 0 18px rgba(255,90,150,.13);
+}
+
+
+/* Normal text */
+body.nightMode p {
+    color: #eadde5;
+}
+
+
+/* Counter box */
+body.nightMode #counter {
+    background:
+        linear-gradient(
+            135deg,
+            #8d315c,
+            #542544
+        ) !important;
+
+    color: #fff !important;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.30),
+        0 0 25px rgba(255,80,145,.15) !important;
+}
+
+
+/* Quiz */
+body.nightMode .quizQuestion {
+    background: rgba(255,255,255,.055) !important;
+}
+
+body.nightMode .quizOption {
+    background: rgba(255,255,255,.07) !important;
+    color: #f5e8ef !important;
+
+    border-color: rgba(255,130,175,.20) !important;
+}
+
+body.nightMode .quizOption.correct {
+    background: rgba(255,75,135,.16) !important;
+    color: #ff9cbd !important;
+}
+
+
+/* Quote / white inner cards */
+body.nightMode blockquote {
+    background: rgba(255,255,255,.055) !important;
+    color: #eadde5 !important;
+
+    border-color: rgba(255,255,255,.08) !important;
+}
+
+
+/* Images + videos */
+body.nightMode img,
+body.nightMode video {
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35);
+}
+
+
+/* Floating controls */
+body.nightMode .themeToggle,
+body.nightMode .musicToggle {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(64,39,65,.96),
+            rgba(35,24,40,.96)
+        ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.30),
+        0 0 18px rgba(255,85,145,.16) !important;
+}
+
+
+/* Scroll progress */
+body.nightMode .heartProgressLine {
+    background: rgba(255,255,255,.10) !important;
+}
+
+body.nightMode .heartProgressFill {
+    background:
+        linear-gradient(
+            to bottom,
+            #ff9abb,
+            #ff4d8d
+        ) !important;
+
+    box-shadow:
+        0 0 10px rgba(255,80,145,.55);
+}
+
+body.nightMode .heartProgressIcon {
+    color: #ff82ad !important;
+
+    text-shadow:
+        0 0 12px rgba(255,80,145,.7);
+}
+
+
+/* Links */
+body.nightMode a {
+    color: #ff9cbd;
+}/* ===== 🌙 FIX LIGHT CARDS IN NIGHT MODE ===== */
+
+/* Letter popup */
+body.nightMode .letterPopupBox {
+    background: linear-gradient(
+        145deg,
+        #352238,
+        #211725
+    ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+}
+
+body.nightMode .letterPopupBox p {
+    color: #f2e7ed !important;
+}
+
+body.nightMode .letterPopupBox h2 {
+    color: #ff8db6 !important;
+}
+
+
+/* Memory Jar main card */
+body.nightMode .memoryJarSection {
+    background: linear-gradient(
+        145deg,
+        #352238,
+        #211725
+    ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.30) !important;
+}
+
+
+/* Memory Jar text */
+body.nightMode .memoryJarSection p {
+    color: #eadde5 !important;
+}
+
+body.nightMode .memoryJarSection h2,
+body.nightMode .memoryJarSection h3 {
+    color: #ff8db6 !important;
+}
+
+
+/* Memory message box inside jar */
+body.nightMode .memoryJarSection .memoryText,
+body.nightMode .memoryJarSection .memoryMessage {
+    background: rgba(255,255,255,.07) !important;
+    color: #f5e8ef !important;
+
+    border-color: rgba(255,255,255,.10) !important;
+}
+
+
+/* Keep emojis bright */
+body.nightMode .memoryJarSection span {
+    opacity: 1;
+}/* ===== 🌙 FINAL POPUP NIGHT MODE FIX ===== */
+
+body.nightMode .finalPopupBox {
+    background: linear-gradient(
+        145deg,
+        #352238,
+        #211725
+    ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,.40),
+        0 0 30px rgba(255,70,135,.12) !important;
+}
+
+
+/* Popup heading */
+
+body.nightMode .finalPopupBox h2,
+body.nightMode .finalPopupBox h3 {
+    color: #ff8db6 !important;
+}
+
+
+/* Popup normal writing */
+
+body.nightMode .finalPopupBox p {
+    color: #f2e7ed !important;
+}
+
+
+/* Signature */
+
+body.nightMode .finalPopupBox .signature {
+    color: #ff8db6 !important;
+}
+
+
+/* Close button */
+
+body.nightMode .finalPopupBox .closeBtn {
+    background: rgba(255,255,255,.10) !important;
+    color: #ff75a6 !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+}/* ===== 🌙 LOVE POPUP NIGHT MODE FIX ===== */
+
+body.nightMode .lovePopupBox {
+    background: linear-gradient(
+        145deg,
+        #352238,
+        #211725
+    ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,.45),
+        0 0 30px rgba(255,70,135,.15) !important;
+}
+
+/* I Love You Forever */
+body.nightMode .lovePopupBox h1 {
+    color: #ff8db6 !important;
+}
+
+/* Pikachu... */
+body.nightMode .lovePopupBox h2 {
+    color: #ff9cbd !important;
+}
+
+/* Main message */
+body.nightMode .lovePopupBox p {
+    color: #f3e8ee !important;
+}
+
+/* Close button */
+body.nightMode .closeLove {
+    background: rgba(255,255,255,.10) !important;
+    color: #ff79a8 !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+}/* ===== 🌙 MINI INTRO NIGHT MODE FIX ===== */
+
+body.nightMode #miniIntro {
+    background: linear-gradient(
+        180deg,
+        #160e19 0%,
+        #241528 50%,
+        #100b14 100%
+    ) !important;
+}
+
+/* Intro content */
+body.nightMode #miniIntro .introContent {
+    background: transparent !important;
+}
+
+/* B ♡ P */
+body.nightMode #introNames {
+    color: #ff8db6 !important;
+
+    text-shadow:
+        0 0 20px rgba(255, 80, 145, .25);
+}
+
+/* Our Story */
+body.nightMode #introStory {
+    color: #f5e8ef !important;
+}
+
+/* Date */
+body.nightMode #miniIntro span {
+    color: #d9cbd3 !important;
 }

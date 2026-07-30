@@ -653,4 +653,220 @@ document.querySelectorAll(".flipCard").forEach(function(card) {
 
     });
 
+});// ===== 🎵 MUSIC ON / OFF BUTTON =====
+
+const musicToggle = document.getElementById("musicToggle");
+const musicIcon = document.getElementById("musicIcon");
+
+if (musicToggle && bgMusic) {
+
+    function updateMusicButton() {
+
+        if (bgMusic.paused) {
+            musicIcon.textContent = "🔇";
+        } else {
+            musicIcon.textContent = "🎵";
+        }
+
+    }
+
+
+    musicToggle.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        if (bgMusic.paused) {
+
+            bgMusic.play()
+                .then(function () {
+                    updateMusicButton();
+                })
+                .catch(function () {
+                    musicIcon.textContent = "🔇";
+                });
+
+        } else {
+
+            bgMusic.pause();
+            updateMusicButton();
+
+        }
+
+    });
+
+
+    bgMusic.addEventListener("play", updateMusicButton);
+    bgMusic.addEventListener("pause", updateMusicButton);
+
+    updateMusicButton();
+}// ===== 🌙 DAY / NIGHT MODE + ANIMATION =====
+
+const themeToggle = document.getElementById("themeToggle");
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", function(event) {
+
+        event.stopPropagation();
+
+        const goingNight =
+            !document.body.classList.contains("nightMode");
+
+
+        // Create transition wave
+        const wave = document.createElement("div");
+
+        wave.className =
+            "themeTransition " +
+            (goingNight ? "toNight" : "toDay");
+
+
+        // Start animation from button position
+        const buttonRect =
+            themeToggle.getBoundingClientRect();
+
+        wave.style.left =
+            (buttonRect.left + buttonRect.width / 2) + "px";
+
+        wave.style.top =
+            (buttonRect.top + buttonRect.height / 2) + "px";
+
+
+        document.body.appendChild(wave);
+
+
+        // Spin button
+        themeToggle.classList.add("themeSpin");
+
+
+        // Change theme during wave
+        setTimeout(function() {
+
+            document.body.classList.toggle("nightMode");
+
+            themeToggle.textContent =
+                goingNight ? "☀️" : "🌙";
+
+        }, 300);
+
+
+        // Clean animation
+        setTimeout(function() {
+
+            wave.remove();
+
+            themeToggle.classList.remove("themeSpin");
+
+        }, 800);
+
+    });
+
+}// ===== ❤️ SCROLL PROGRESS HEART =====
+
+const heartProgressIcon =
+    document.getElementById("heartProgressIcon");
+
+const heartProgressFill =
+    document.getElementById("heartProgressFill");
+
+
+function updateHeartProgress() {
+
+    if (!heartProgressIcon || !heartProgressFill) return;
+
+
+    const scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop;
+
+
+    const scrollHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+
+    let progress = 0;
+
+    if (scrollHeight > 0) {
+        progress =
+            (scrollTop / scrollHeight) * 100;
+    }
+
+
+    progress =
+        Math.min(100, Math.max(0, progress));
+
+
+    heartProgressIcon.style.top =
+        progress + "%";
+
+    heartProgressFill.style.height =
+        progress + "%";
+
+
+    if (progress >= 97) {
+
+        heartProgressIcon.classList.add("finished");
+
+    } else {
+
+        heartProgressIcon.classList.remove("finished");
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateHeartProgress,
+    { passive: true }
+);
+
+
+window.addEventListener(
+    "resize",
+    updateHeartProgress
+);
+
+
+updateHeartProgress();// =====================================
+// ✨ SMOOTH SECTION REVEAL
+// =====================================
+
+const revealSections = document.querySelectorAll(
+    ".letter, .final, .loveQuiz, .memoryJarSection, " +
+    ".flipMemorySection, .holdHandSection, .secretSection"
+);
+
+revealSections.forEach(function(section) {
+    section.classList.add("revealSection");
+});
+
+
+const revealObserver = new IntersectionObserver(
+    function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("revealVisible");
+
+                // Reveal only once
+                revealObserver.unobserve(entry.target);
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px"
+    }
+);
+
+
+revealSections.forEach(function(section) {
+    revealObserver.observe(section);
 });
