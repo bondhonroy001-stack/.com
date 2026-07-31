@@ -89,7 +89,7 @@ box-shadow:0 8px 20px rgba(255,77,141,.35);
 display:inline-block;
 min-width:260px;
 }
-}
+
 
 .glass{
 animation:fadeUp 1s ease;
@@ -2093,8 +2093,9 @@ body:not(.giftOpened) .premiumFooter {
 
     position: absolute;
 
-    left: 26px;
+    left: 68px !important;
     bottom: -17px;
+    transform: translateX(-50%) !important;
 
     color: #ff3f7f;
 
@@ -4169,4 +4170,616 @@ body.nightMode .secretHeartMessage p {
     color: #ff7da8;
     opacity: .75;
     transition: .4s ease;
+}/* ==================================
+   🫶 HOLD MY HAND MAGIC
+================================== */
+
+.holdHandMagic {
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    text-align: center;
+
+    transition:
+        max-height .8s ease,
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+.holdHandMagic.active {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+
+    margin-top: 22px;
+}
+
+
+/* HANDS */
+
+.handPair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 38px;
+
+    font-size: 42px;
+}
+
+.leftHand,
+.rightHand {
+    display: inline-block;
+
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* Start apart */
+
+.leftHand {
+    transform: translateX(-35px);
+}
+
+.rightHand {
+    transform: translateX(35px);
+}
+
+
+/* Come together */
+
+.holdHandMagic.active .leftHand {
+    transform: translateX(12px);
+}
+
+.holdHandMagic.active .rightHand {
+    transform: translateX(-12px);
+}
+
+
+/* HEART */
+
+.holdHeart {
+    display: inline-block;
+
+    opacity: 0;
+    transform: scale(0);
+
+    font-size: 27px;
+}
+
+.holdHandMagic.active .holdHeart {
+    animation: holdHeartPop .7s .55s forwards;
+}
+
+@keyframes holdHeartPop {
+
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* MESSAGE */
+
+.holdMessage {
+    margin: 18px 0 0;
+
+    opacity: 0;
+    transform: translateY(8px);
+
+    color: #ff5c91;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.7;
+
+    transition:
+        opacity .6s .8s ease,
+        transform .6s .8s ease;
+}
+
+.holdHandMagic.active .holdMessage {
+    opacity: 1;
+    transform: translateY(0);
+}/* ===== TYPEWRITER INTRO ===== */
+
+#coupleTyping,
+#dateTyping {
+    min-height: 1em;
+}
+
+.typingCursor::after {
+    content: "|";
+    margin-left: 3px;
+    color: #ff4f88;
+    animation: typingBlink .7s infinite;
+}
+
+@keyframes typingBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+}/* ===== ✨ SMOOTH TYPEWRITER ===== */
+
+#coupleTyping,
+#sinceTyping,
+#dateTyping {
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.typingActive {
+    animation: typingSoftGlow 1.2s ease-in-out infinite alternate;
+}
+
+.typingActive::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 3px;
+
+    color: #ff6b9c;
+    font-weight: 400;
+
+    animation: cursorBlink .65s ease-in-out infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 45% {
+        opacity: 1;
+    }
+
+    55%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes typingSoftGlow {
+    from {
+        text-shadow: 0 0 0 rgba(255, 90, 145, 0);
+    }
+
+    to {
+        text-shadow: 0 0 8px rgba(255, 90, 145, .15);
+    }
+}/* ===== ❤️ SOFT HEARTBEAT ===== */
+
+#coupleTyping {
+    animation: coupleHeartbeat 1.8s ease-in-out 2;
+}
+
+@keyframes coupleHeartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.025);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.015);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}/* =================================
+   ✨ FULL PAGE ROMANTIC FONT STYLE
+================================= */
+
+body,
+button,
+input,
+textarea {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+}
+
+/* Main headings */
+h1,
+h2,
+h3,
+h4 {
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+}
+
+/* Paragraphs */
+p {
+    font-style: italic;
+    line-height: 1.7;
+}
+
+/* Buttons */
+button {
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* Small texts / hints */
+small,
+.secretHeartHint {
+    font-style: italic;
+}
+
+/* Timer একটু clear রাখবে */
+#counter {
+    font-style: italic;
+    letter-spacing: 0.4px;
+}h1, h2, h3,
+#coupleTyping {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+}
+
+body, p, button, small {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+}/* ===== SECRET HEART ALIGNMENT FIX ===== */
+
+.secretHeartArea {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.secretHeart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 25px auto 12px auto !important;
+    padding: 0 !important;
+
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+
+    text-align: center;
+    line-height: 1;
+}
+
+.secretHeartHint {
+    width: 100%;
+    text-align: center !important;
+    margin: 8px auto 20px auto !important;
+    display: block;
+}/* ===== ❤️ HEART ONLY BEAT ===== */
+
+.nameHeart {
+    display: inline-block;
+    font-style: normal;
+    animation: nameHeartBeat 0.75s ease-in-out 2;
+}
+
+@keyframes nameHeartBeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.35);
+    }
+
+    55% {
+        transform: scale(0.95);
+    }
+
+    75% {
+        transform: scale(1.18);
+    }
+}/* =================================
+   ✨ PREMIUM GLASS SHINE BUTTONS
+================================= */
+
+/* Main interactive buttons */
+button {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Moving shine */
+button::after {
+    content: "";
+
+    position: absolute;
+    top: -40%;
+    left: -70%;
+
+    width: 35%;
+    height: 180%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.65),
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+
+    transform: rotate(18deg);
+
+    pointer-events: none;
+    z-index: 5;
+
+    animation: buttonGlassShine 4s ease-in-out infinite;
+}
+
+
+/* Shine movement */
+
+@keyframes buttonGlassShine {
+
+    0%,
+    65% {
+        left: -70%;
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    88% {
+        left: 135%;
+        opacity: 1;
+    }
+
+    100% {
+        left: 135%;
+        opacity: 0;
+    }
+}
+
+
+/* Tap feel */
+
+button:active {
+    transform: scale(0.96);
+}/* =================================
+   🌙 NIGHT MODE TWINKLING STARS
+================================= */
+
+body.nightMode::before {
+    content:
+        "✦   ·   ✧       ·   ✦    ·     ✧"
+        "    ·   ✦    ·      ✧    ·   ✦"
+        "  ✧      ·    ✦    ·       ✧"
+        "     ✦    ·      ✧     ·    ✦";
+
+    position: fixed;
+    inset: 0;
+
+    padding: 20px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 13px;
+    line-height: 7;
+    letter-spacing: 18px;
+    word-spacing: 30px;
+
+    pointer-events: none;
+    z-index: 0;
+
+    opacity: 0;
+
+    animation: nightStarsTwinkle 3s ease-in-out infinite alternate;
+}
+
+
+/* দ্বিতীয় layer */
+
+body.nightMode::after {
+    content:
+        "·    ✧       ·     ✦      ·"
+        "   ✦      ·      ✧    ·"
+        "      ·   ✦     ·      ✧";
+
+    position: fixed;
+    inset: 0;
+
+    padding: 55px 10px;
+
+    color: rgba(255, 210, 230, 0.45);
+
+    font-size: 9px;
+    line-height: 10;
+    letter-spacing: 28px;
+
+    pointer-events: none;
+    z-index: 0;
+
+    animation: nightStarsTwinkle2 4.5s ease-in-out infinite alternate;
+}
+
+
+@keyframes nightStarsTwinkle {
+
+    from {
+        opacity: 0.25;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0.8;
+        transform: translateY(-5px);
+    }
+}
+
+
+@keyframes nightStarsTwinkle2 {
+
+    from {
+        opacity: 0.15;
+    }
+
+    to {
+        opacity: 0.65;
+    }
+}
+
+
+/* Website content stars-এর উপরে থাকবে */
+
+body.nightMode #mainPage {
+    position: relative;
+    z-index: 1;
+}
+/* =====================================
+
+}/* ===== FINAL MEETING ANIMATION FIX ===== */
+
+/* পুরোনো full vertical line hide */
+.meetingList::before {
+    display: none !important;
+}
+
+/* cards initially hidden */
+.meetingItem {
+    position: relative !important;
+
+    opacity: 0 !important;
+    transform: translateY(30px) scale(.97) !important;
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22, 1, .36, 1) !important;
+}
+
+/* JS এই class add করবে */
+.meetingItem.showMeeting {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* connecting line */
+.meetingItem:not(.lastMeeting)::after {
+    content: "" !important;
+
+    position: absolute !important;
+    left: 37px !important;
+    top: 100% !important;
+
+    width: 3px !important;
+    height: 12px !important;
+
+    background: linear-gradient(
+        to bottom,
+        #ff7eae,
+        #ffb1cc
+    ) !important;
+
+    border-radius: 10px !important;
+
+    transform: scaleY(0) !important;
+    transform-origin: top !important;
+
+    transition: transform .55s ease !important;
+}
+
+/* JS এই class add করবে */
+.meetingItem.drawLine::after {
+    transform: scaleY(1) !important;
+}/* =====================================
+/* DAY + NIGHT MEETING ANIMATION FINAL */
+
+body .meetingItem {
+    opacity: 0 !important;
+    transform: translateY(30px) scale(.97) !important;
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22, 1, .36, 1) !important;
+}
+
+body .meetingItem.showMeeting {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+body .meetingItem:not(.lastMeeting)::after {
+    transform: scaleY(0) !important;
+    transform-origin: top !important;
+    transition: transform .55s ease !important;
+}
+
+body .meetingItem.drawLine::after {
+    transform: scaleY(1) !important;
+}
+/* ===== SMOOTH DAY ↔ NIGHT TRANSITION ===== */
+
+body,
+#mainPage,
+.meetingItem,
+.meetingList,
+section,
+.card,
+button {
+    transition:
+        background-color 0.8s ease,
+        background 0.8s ease,
+        color 0.65s ease,
+        border-color 0.65s ease,
+        box-shadow 0.8s ease !important;
+}
+
+body::before,
+body::after,
+#mainPage::before,
+#mainPage::after {
+    transition:
+        opacity 0.8s ease,
+        background 0.8s ease !important;
+}
+
+/* Sun / Moon button smoother */
+#themeToggle,
+.themeToggle,
+.theme-toggle {
+    transition:
+        transform 0.5s cubic-bezier(.22, 1, .36, 1),
+        background 0.7s ease,
+        box-shadow 0.7s ease !important;
+}
+
+#themeToggle:active,
+.themeToggle:active,
+.theme-toggle:active {
+    transform: scale(0.88) rotate(20deg);
+}/* ===== Bottom heart alignment fix ===== */
+
+.meetingList::after {
+    left: 37px !important;
+    transform: translateX(-50%) !important;
+}.meetingList::after {
+    display: none !important;
 }

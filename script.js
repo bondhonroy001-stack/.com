@@ -1282,4 +1282,190 @@ if (hint) {
 
     }
 
-});
+});// ==================================
+// 🫶 HOLD MY HAND MAGIC
+// ==================================
+
+const holdBtn =
+    document.getElementById("holdBtn");
+
+const holdHandMagic =
+    document.getElementById("holdHandMagic");
+
+
+if (holdBtn && holdHandMagic) {
+
+    holdBtn.addEventListener("click", function() {
+
+        holdHandMagic.classList.add("active");
+
+        // Change button text
+        holdBtn.innerHTML = "I'm Holding Your Hand ❤️";
+
+        // Small vibration
+        if (navigator.vibrate) {
+            navigator.vibrate([40, 40, 80]);
+        }
+
+    });
+
+}// ===== PROFILE TYPEWRITER =====
+
+// ==========================================
+// ✨ PROFILE TYPEWRITER
+// ==========================================
+
+const coupleTyping = document.getElementById("coupleTyping");
+const sinceTyping = document.getElementById("sinceTyping");
+const dateTyping = document.getElementById("dateTyping");
+
+
+function typeText(element, text, speed, callback) {
+
+    if (!element) {
+        if (callback) callback();
+        return;
+    }
+
+    element.textContent = "";
+    element.classList.add("typingActive");
+
+    const letters = Array.from(text);
+    let i = 0;
+
+    function type() {
+
+        if (i < letters.length) {
+
+            element.textContent += letters[i];
+            i++;
+
+            setTimeout(type, speed);
+
+        } else {
+
+            element.classList.remove("typingActive");
+
+            if (callback) {
+                callback();
+            }
+        }
+    }
+
+    type();
+}
+
+
+// ==========================================
+// START TYPEWRITER
+// ==========================================
+
+setTimeout(function () {
+
+    // 1. Bondhon Payel
+  typeText(
+    coupleTyping,
+    "Bondhon ♡ Payel",
+    150,
+    function () {
+
+        coupleTyping.innerHTML =
+            'Bondhon <span class="nameHeart">♡</span> Payel';
+
+          
+
+            setTimeout(function () {
+
+                // 2. Together Since
+                typeText(
+                    sinceTyping,
+                    "Together Since",
+                    120,
+                    function () {
+
+                        setTimeout(function () {
+
+                            // 3. Date & Time
+                            typeText(
+                                dateTyping,
+                                "16 March 2025 • 8:32 PM",
+                                100
+                            );
+
+                        }, 500);
+
+                    }
+                );
+
+            }, 500);
+
+        }
+    );
+
+}, 5000);
+// =====================================
+
+// ===== MEETING TIMELINE FINAL =====
+
+const finalMeetingItems =
+    document.querySelectorAll(".meetingItem");
+
+let finalMeetingStarted = false;
+
+
+function playMeetingTimeline() {
+
+    if (finalMeetingStarted) return;
+
+    finalMeetingStarted = true;
+
+
+    finalMeetingItems.forEach(function(item, index) {
+
+        const cardDelay = index * 1300;
+
+
+        // Show card
+        setTimeout(function() {
+
+            item.classList.add("showMeeting");
+
+        }, cardDelay);
+
+
+        // Draw line AFTER card appears
+        if (index < finalMeetingItems.length - 1) {
+
+            setTimeout(function() {
+
+                item.classList.add("drawLine");
+
+            }, cardDelay + 700);
+
+        }
+
+    });
+
+}
+
+
+if (finalMeetingItems.length > 0) {
+
+    const finalMeetingObserver =
+        new IntersectionObserver(function(entries) {
+
+            if (entries[0].isIntersecting) {
+
+                playMeetingTimeline();
+
+                finalMeetingObserver.disconnect();
+            }
+
+        }, {
+            threshold: 0.15
+        });
+
+
+    finalMeetingObserver.observe(finalMeetingItems[0]);
+
+}
