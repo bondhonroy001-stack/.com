@@ -1814,7 +1814,9 @@ body:not(.giftOpened) .holdHandSection,
 body:not(.giftOpened) .secretSection,
 body:not(.giftOpened) .loveQuiz,
 body:not(.giftOpened) .memoryJarSection,
+body:not(.giftOpened) .secondPageLink,
 body:not(.giftOpened) .flipMemorySection,
+body:not(.giftOpened) .secretHeartArea,
 body:not(.giftOpened) .premiumFooter {
     display: none !important;
 }
@@ -3733,4 +3735,438 @@ body.nightMode #introStory {
 /* Date */
 body.nightMode #miniIntro span {
     color: #d9cbd3 !important;
+}/* ===== 💗 SECOND PAGE BUTTON ===== */
+
+.secondPageLink {
+    width: 88%;
+    max-width: 480px;
+
+    margin: 80px auto 100px;
+
+    text-align: center;
+}
+
+.secondPageLink span {
+    display: block;
+
+    margin-bottom: 15px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #aaa;
+}
+
+.secondPageLink a {
+    display: inline-block;
+
+    padding: 16px 30px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    background: linear-gradient(
+        135deg,
+        #ff2d75,
+        #ff72a2
+    );
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 10px 28px rgba(255,45,117,.25);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.secondPageLink a:active {
+    transform: scale(.93);
+}
+
+
+/* Night mode */
+
+body.nightMode .secondPageLink span {
+    color: #cbbdc5;
+}
+
+body.nightMode .secondPageLink a {
+    box-shadow:
+        0 10px 30px rgba(255,80,145,.20);
+}/* ===== 📸 PHOTO LIGHTBOX ===== */
+
+.photoLightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 25px;
+
+    background: rgba(15, 8, 13, .92);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.photoLightbox.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.photoLightbox img {
+    display: block;
+
+    max-width: 92vw;
+    max-height: 78vh;
+
+    object-fit: contain;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
+
+    transform: scale(.88);
+    opacity: 0;
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        opacity .3s ease;
+}
+
+.photoLightbox.show img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.closeLightbox {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+
+    width: 48px;
+    height: 48px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 100001;
+
+    backdrop-filter: blur(10px);
+}/* ===== LIGHTBOX NAVIGATION ===== */
+
+.lightboxNav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(10px);
+
+    color: white;
+    font-size: 36px;
+    line-height: 1;
+
+    z-index: 100002;
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.prevPhoto {
+    left: 18px;
+}
+
+.nextPhoto {
+    right: 18px;
+}
+
+.lightboxNav:active {
+    transform: translateY(-50%) scale(.88);
+}
+
+
+/* Counter */
+
+.photoCounter {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 7px 15px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(10px);
+
+    color: rgba(255,255,255,.85);
+
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .lightboxNav {
+        width: 42px;
+        height: 42px;
+        font-size: 30px;
+    }
+
+    .prevPhoto {
+        left: 10px;
+    }
+
+    .nextPhoto {
+        right: 10px;
+    }
+
+    .photoLightbox img {
+        max-width: 82vw;
+    }
+}
+
+.lightboxHint {
+    margin-top: 18px;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* Gallery photos clickable feel */
+
+.memory img,
+.gallery img,
+.photo-card img,
+.flipCard img {
+    cursor: zoom-in;
+}/* ===== 📸 LIGHTBOX PHOTO CHANGE ANIMATION ===== */
+
+#lightboxImage {
+    opacity: 1;
+    transform: scale(1);
+
+    transition:
+        opacity .22s ease,
+        transform .22s ease;
+}
+
+#lightboxImage.photoChanging {
+    opacity: 0;
+    transform: scale(.94);
+}/* ==============================
+   💗 SECRET HEART EASTER EGG
+============================== */
+
+.secretHeartArea {
+    width: 100%;
+    text-align: center;
+    padding: 25px 20px 45px;
+}
+
+.secretHeart {
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 80, 130, .25);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .55);
+
+    color: #ff5b91;
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.secretHeart:active {
+    transform: scale(.82);
+}
+
+.secretHeart.secretTap {
+    animation: secretHeartBeat .35s ease;
+}
+
+@keyframes secretHeartBeat {
+
+    50% {
+        transform: scale(1.28);
+    }
+
+}
+
+
+/* Hidden message */
+
+.secretHeartMessage {
+    width: min(90%, 390px);
+
+    max-height: 0;
+    overflow: hidden;
+
+    margin: 0 auto;
+
+    padding: 0 25px;
+
+    opacity: 0;
+    transform: translateY(15px) scale(.96);
+
+    border-radius: 22px;
+
+    transition:
+        max-height .7s ease,
+        opacity .5s ease,
+        transform .5s ease,
+        margin .5s ease,
+        padding .5s ease;
+}
+
+
+/* UNLOCKED */
+
+.secretHeartMessage.unlocked {
+    max-height: 350px;
+
+    margin-top: 20px;
+    padding: 28px 25px;
+
+    opacity: 1;
+    transform: translateY(0) scale(1);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.95),
+            rgba(255,235,243,.95)
+        );
+
+    box-shadow:
+        0 15px 45px rgba(255, 70, 125, .15);
+}
+
+
+.secretHeartMessage span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    color: #ff6c9d;
+}
+
+.secretHeartMessage h3 {
+    margin: 10px 0;
+
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+
+    color: #ff3479;
+}
+
+.secretHeartMessage p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    color: #777;
+}
+
+.secretHeartMessage small {
+    display: block;
+
+    margin-top: 15px;
+
+    color: #ff5b91;
+    font-weight: 700;
+}
+
+
+/* Night Mode */
+
+body.nightMode .secretHeart {
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.12);
+
+    color: #ff8db4;
+}
+
+body.nightMode .secretHeartMessage.unlocked {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(45,25,38,.97),
+            rgba(32,20,30,.97)
+        );
+}
+
+body.nightMode .secretHeartMessage p {
+    color: #ddd;
+}.secretHeartHint {
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: #ff7da8;
+    opacity: .75;
+    transition: .4s ease;
 }

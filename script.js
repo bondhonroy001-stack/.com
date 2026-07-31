@@ -869,4 +869,417 @@ const revealObserver = new IntersectionObserver(
 
 revealSections.forEach(function(section) {
     revealObserver.observe(section);
+});// =====================================
+// 📸 PREMIUM PHOTO LIGHTBOX
+// ONLY MEET PHOTOS
+// =====================================
+
+const photoLightbox =
+    document.getElementById("photoLightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const closeLightbox =
+    document.getElementById("closeLightbox");
+
+const prevPhoto =
+    document.getElementById("prevPhoto");
+
+const nextPhoto =
+    document.getElementById("nextPhoto");
+
+const photoCounter =
+    document.getElementById("photoCounter");
+
+
+// =====================================
+// GET ONLY MEET PHOTOS
+// =====================================
+
+const lightboxPhotos = Array.from(
+    document.querySelectorAll("img")
+)
+.filter(function(img) {
+
+    return (
+        !img.closest("#photoLightbox") &&
+        img.src.toLowerCase().includes("meet")
+    );
+
+});
+
+
+let currentPhotoIndex = 0;
+
+
+// =====================================
+// OPEN PHOTO
+// =====================================
+
+lightboxPhotos.forEach(function(img, index) {
+
+    img.style.cursor = "zoom-in";
+
+    img.addEventListener("click", function(e) {
+
+        e.stopPropagation();
+
+        currentPhotoIndex = index;
+
+        showPhoto();
+
+        if (photoLightbox) {
+
+            photoLightbox.classList.add("show");
+
+        }
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+});
+
+
+// =====================================
+// SHOW CURRENT PHOTO
+// =====================================
+
+function showPhoto() {
+
+    if (!lightboxPhotos.length) return;
+
+    const selectedPhoto =
+        lightboxPhotos[currentPhotoIndex];
+
+    if (lightboxImage) {
+        lightboxImage.src =
+            selectedPhoto.currentSrc ||
+            selectedPhoto.src;
+    }
+
+    if (photoCounter) {
+        photoCounter.textContent =
+            (currentPhotoIndex + 1) +
+            " / " +
+            lightboxPhotos.length;
+    }
+}
+
+
+
+
+// =====================================
+// NEXT PHOTO
+// =====================================
+
+function showNextPhoto() {
+
+    currentPhotoIndex++;
+
+
+    if (
+        currentPhotoIndex >=
+        lightboxPhotos.length
+    ) {
+
+        currentPhotoIndex = 0;
+
+    }
+
+
+    showPhoto();
+
+}
+
+
+// =====================================
+// PREVIOUS PHOTO
+// =====================================
+
+function showPreviousPhoto() {
+
+    currentPhotoIndex--;
+
+
+    if (currentPhotoIndex < 0) {
+
+        currentPhotoIndex =
+            lightboxPhotos.length - 1;
+
+    }
+
+
+    showPhoto();
+
+}
+
+
+// =====================================
+// NEXT BUTTON
+// =====================================
+
+if (nextPhoto) {
+
+    nextPhoto.addEventListener(
+        "click",
+        function(e) {
+
+            e.stopPropagation();
+
+            showNextPhoto();
+
+        }
+    );
+
+}
+
+
+// =====================================
+// PREVIOUS BUTTON
+// =====================================
+
+if (prevPhoto) {
+
+    prevPhoto.addEventListener(
+        "click",
+        function(e) {
+
+            e.stopPropagation();
+
+            showPreviousPhoto();
+
+        }
+    );
+
+}
+
+
+// =====================================
+// CLOSE LIGHTBOX
+// =====================================
+
+function hidePhotoLightbox() {
+
+    if (photoLightbox) {
+
+        photoLightbox.classList.remove(
+            "show"
+        );
+
+    }
+
+    document.body.style.overflow = "";
+
+}
+
+
+// X BUTTON
+
+if (closeLightbox) {
+
+    closeLightbox.addEventListener(
+        "click",
+        function(e) {
+
+            e.stopPropagation();
+
+            hidePhotoLightbox();
+
+        }
+    );
+
+}
+
+
+// =====================================
+// TAP OUTSIDE PHOTO = CLOSE
+// =====================================
+
+if (photoLightbox) {
+
+    photoLightbox.addEventListener(
+        "click",
+        function(e) {
+
+            if (e.target === photoLightbox) {
+
+                hidePhotoLightbox();
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================
+// 📱 SWIPE LEFT / RIGHT
+// =====================================
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+if (photoLightbox) {
+
+    photoLightbox.addEventListener(
+        "touchstart",
+        function(e) {
+
+            touchStartX =
+                e.changedTouches[0].screenX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    photoLightbox.addEventListener(
+        "touchend",
+        function(e) {
+
+            touchEndX =
+                e.changedTouches[0].screenX;
+
+
+            const distance =
+                touchStartX - touchEndX;
+
+
+            // Small movement ignore
+            if (Math.abs(distance) < 50) {
+
+                return;
+
+            }
+
+
+            // Swipe LEFT
+            if (distance > 0) {
+
+                showNextPhoto();
+
+            }
+
+
+            // Swipe RIGHT
+            else {
+
+                showPreviousPhoto();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+// =====================================
+// 💻 KEYBOARD SUPPORT
+// =====================================
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            !photoLightbox ||
+            !photoLightbox.classList.contains("show")
+        ) {
+
+            return;
+
+        }
+
+
+        // RIGHT ARROW
+        if (e.key === "ArrowRight") {
+
+            showNextPhoto();
+
+        }
+
+
+        // LEFT ARROW
+        if (e.key === "ArrowLeft") {
+
+            showPreviousPhoto();
+
+        }
+
+
+        // ESC
+        if (e.key === "Escape") {
+
+            hidePhotoLightbox();
+
+        }
+
+    }
+);// ==============================
+// 💗 SECRET HEART — 3 TAP UNLOCK
+// ==============================
+
+const secretHeart =
+    document.getElementById("secretHeart");
+
+const secretHeartMessage =
+    document.getElementById("secretHeartMessage");
+
+let secretHeartTaps = 0;
+
+
+secretHeart?.addEventListener("click", function(e) {
+
+    e.stopPropagation();
+
+    secretHeartTaps++;
+
+
+    // Heart beat on every tap
+    secretHeart.classList.remove("secretTap");
+
+    void secretHeart.offsetWidth;
+
+    secretHeart.classList.add("secretTap");
+
+
+    // Vibrate slightly
+    if (navigator.vibrate) {
+        navigator.vibrate(40);
+    }
+
+
+    // 3 taps = unlock
+    if (secretHeartTaps >= 3) {
+
+        secretHeartMessage?.classList.add(
+            "unlocked"
+        );
+
+        secretHeart.innerHTML = "♥";
+        const hint = document.querySelector(".secretHeartHint");
+
+if (hint) {
+    hint.style.display = "none";
+}
+
+        secretHeartTaps = 0;
+
+
+        if (navigator.vibrate) {
+            navigator.vibrate([60, 50, 100]);
+        }
+
+    }
+
 });
